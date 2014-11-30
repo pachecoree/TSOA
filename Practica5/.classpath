@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Pacheco/Documents/Archivos Escolares/2014-B/Taller de Sistemas Operativos Avanzados/Practicas/Practica5/Practica5/MicroKernelBasedSystem.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
