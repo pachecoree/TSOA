@@ -1,4 +1,4 @@
-package sistemaDistribuido.visual.clienteServidor.RomeroCarlos;
+package sistemaDistribuido.visual.clienteServidor;
 
 import java.awt.Panel;
 import java.awt.Button;
