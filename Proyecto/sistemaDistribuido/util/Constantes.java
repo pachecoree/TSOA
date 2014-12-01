@@ -11,6 +11,11 @@ public class Constantes {
 	public static final int TEN_SECONDS = 10000;
 	public static final int FIVE_SECONDS = 5000;
 	
+	public static final int TAMANIO_SOLICITUD = 1024;
+	public static final int OFFSET_BYTES_TAMANIO = 10;
+	public static final int OFFSET_MENSAJE_CLIENTE = 12;
+	public static final int OFFSET_RESPUESTA_SERVIDOR = 8;
+	
 	public static final int BITS_BYTE = 8;
 	public static final int BYTES_INT = 4;
 	public static final int BYTES_LONG = 8;

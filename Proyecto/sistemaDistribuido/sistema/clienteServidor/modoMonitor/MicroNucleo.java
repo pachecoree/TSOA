@@ -14,7 +14,7 @@ import sistemaDistribuido.sistema.clienteServidor.modoMonitor.MicroNucleoBase;
 import static sistemaDistribuido.util.Constantes.*;
 import sistemaDistribuido.sistema.clienteServidor.modoUsuario.Proceso;
 import sistemaDistribuido.util.OrdenamientoBytes;
-
+import sistemaDistribuido.sistema.administracionDeBuzon.*;
 /**
  * 
  */
@@ -23,27 +23,39 @@ public final class MicroNucleo extends MicroNucleoBase {
 	private Recepcion mapRecepcion;
 	private Emision mapEmision;
 	private AlmacenamientoTemporal tempStorageTable;
-
+	private TablaBuzones tablaBuzones;
 	/**
 	 * 
 	 */
 	private MicroNucleo(){
-		 mapEmision = new Emision();
-		 mapRecepcion = new Recepcion();
-		 tempStorageTable = new AlmacenamientoTemporal();
+		mapEmision = new Emision();
+		mapRecepcion = new Recepcion();
+		tempStorageTable = new AlmacenamientoTemporal();
+		tablaBuzones = new TablaBuzones();
 	}
 
 	/**
 	 * 
 	 */
-	
+
 	public final static MicroNucleo obtenerMicroNucleo(){
 		return nucleo;
 	}
-	
+
 	public void registerInterface(ParIpId pIpId) {
 		mapEmision.addElement(pIpId.dameID(), pIpId);
 	}
+
+	public void registrarBuzon(int idProceso){
+
+		tablaBuzones.registrar(idProceso, new Buzon());
+	}
+
+	public void deregistrarBuzon(int idProceso){
+
+		tablaBuzones.deregistrar(idProceso);
+	}
+
 
 	/*---Metodos para probar el paso de mensajes entre los procesos cliente y servidor en ausencia de datagramas.
     Esta es una forma incorrecta de programacion "por uso de variables globales" (en este caso atributos de clase)
@@ -76,7 +88,7 @@ public final class MicroNucleo extends MicroNucleoBase {
 		String ip;
 		int id;
 		imprimeln("Buscando en listas locales el par (máquina,proceso)que corresponde al parámetro"
-				  + "dest de la llamada a send");
+				+ "dest de la llamada a send");
 		if (mapEmision.hasElement(dest)) {
 			ParIpId pidip = mapEmision.getElement(dest);
 			id = pidip.dameID();
@@ -96,7 +108,7 @@ public final class MicroNucleo extends MicroNucleoBase {
 		try {
 			imprimeln("Enviando mensaje por la red");
 			Datagramas.send(message,dameSocketEmision(),InetAddress.getByName(ip),
-					        damePuertoRecepcion());
+					damePuertoRecepcion());
 		} catch (UnknownHostException e) {
 			System.out.println("Error al obtener la dirección del anfitrión : "+  e.getMessage());
 		}
@@ -106,16 +118,30 @@ public final class MicroNucleo extends MicroNucleoBase {
 	 * 
 	 */
 	protected void receiveVerdadero(int addr,byte[] message){
-		if (!tempStorageTable.hasElement(addr)) {
+
+		Buzon buzon = tablaBuzones.buscar(addr);
+
+		if (!tempStorageTable.hasElement(addr) && buzon == null) {
 			mapRecepcion.addElement(addr, message);
 			suspenderProceso();
+
+		}else if(buzon != null){
+
+			if(buzon.estaVacio()){
+				mapRecepcion.addElement(addr, message);
+				suspenderProceso();
+			}else{
+				byte[] storedMessage = buzon.obtenerMensaje();
+				System.arraycopy(storedMessage, C_0, message, C_0, storedMessage.length);			
+			}
 		}
-		else {
-		    byte[] storedMessage = tempStorageTable.getElement(addr);
-		    System.arraycopy(storedMessage, C_0, message, C_0, storedMessage.length);
-		    tempStorageTable.deleteElement(addr);
+		else{
+			byte[] storedMessage = tempStorageTable.getElement(addr);
+			System.arraycopy(storedMessage, C_0, message, C_0, storedMessage.length);
+			tempStorageTable.deleteElement(addr);
 		}
 	}
+
 
 	/**
 	 * Para el(la) encargad@ de direccionamiento por servidor de nombres en prï¿½ctica 5  
@@ -175,23 +201,41 @@ public final class MicroNucleo extends MicroNucleoBase {
 							reanudarProceso(proc);
 						}
 						else {
-							if (!tempStorageTable.hasElement(dest)) {
-								tempStorageTable.addElement(dest, buffer);
-								imprimeln("Esperando a que el servidor este disponible");
-								mapEmision.addElement(source,new ParIpId(source,ip));
-								sleep(TEN_SECONDS);
-								if (tempStorageTable.hasElement(dest)) {
+							Buzon buzon = tablaBuzones.buscar(dest);
+							
+							if(buzon != null){
+								byte[] copiaNueva = null;
+								System.arraycopy(buffer, C_0, copiaNueva, C_0, buffer.length);
+								if(buzon.ingresarMensaje(copiaNueva)){
+									mapEmision.addElement(source,new ParIpId(source,ip));
+								}else{
+
+										imprimeln("Buzon lleno... (TA)");
+										tempStorageTable.deleteElement(dest);
+										Datagramas.send(MensajesRespuesta.elaborateResponse(source,PRO_TA),
+												dameSocketEmision(),dp.getAddress(), damePuertoRecepcion());
+									
+									}
+							}else{
+								
+								if (!tempStorageTable.hasElement(dest)) {
+									tempStorageTable.addElement(dest, buffer);
+									imprimeln("Esperando a que el servidor este disponible");
+									mapEmision.addElement(source,new ParIpId(source,ip));
+									sleep(TEN_SECONDS);
+									if (tempStorageTable.hasElement(dest)) {
+										imprimeln("Proceso destinatario no disponible (TA)");
+										tempStorageTable.deleteElement(dest);
+										Datagramas.send(MensajesRespuesta.elaborateResponse(source,PRO_TA),
+												dameSocketEmision(),dp.getAddress(), damePuertoRecepcion());
+									}
+								}
+								else {
 									imprimeln("Proceso destinatario no disponible (TA)");
 									tempStorageTable.deleteElement(dest);
 									Datagramas.send(MensajesRespuesta.elaborateResponse(source,PRO_TA),
-											    dameSocketEmision(),dp.getAddress(), damePuertoRecepcion());
+											dameSocketEmision(),dp.getAddress(), damePuertoRecepcion());
 								}
-							}
-							else {
-								imprimeln("Proceso destinatario no disponible (TA)");
-								tempStorageTable.deleteElement(dest);
-								Datagramas.send(MensajesRespuesta.elaborateResponse(source,PRO_TA),
-									   dameSocketEmision(),dp.getAddress(), damePuertoRecepcion());
 							}
 						}
 					}
@@ -203,16 +247,16 @@ public final class MicroNucleo extends MicroNucleoBase {
 							if (tempStorageTable.hasElement(dest)) {
 								tempStorageTable.deleteElement(dest);
 								imprimeln("Proceso destinatario no encontrado según campo "
-										  + "dest del mensaje recibido (AU)");
+										+ "dest del mensaje recibido (AU)");
 								Datagramas.send(MensajesRespuesta.elaborateResponse(source,PRO_AU),
-									dameSocketEmision(),dp.getAddress(), damePuertoRecepcion());
+										dameSocketEmision(),dp.getAddress(), damePuertoRecepcion());
 							}
 						}
 						else {
 							imprimeln("Proceso destinatario no encontrado según campo "
-									  + "dest del mensaje recibido (AU)");
+									+ "dest del mensaje recibido (AU)");
 							Datagramas.send(MensajesRespuesta.elaborateResponse(source,PRO_AU),
-									       dameSocketEmision(),dp.getAddress(), damePuertoRecepcion());
+									dameSocketEmision(),dp.getAddress(), damePuertoRecepcion());
 						}
 					}
 				}
@@ -223,5 +267,5 @@ public final class MicroNucleo extends MicroNucleoBase {
 			System.out.println("Error al ejecutar el Sleep :" + e.getMessage());
 		}
 	}
-	
+
 }
