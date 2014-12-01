@@ -8,8 +8,12 @@ package sistemaDistribuido.visual.rpc;
 import sistemaDistribuido.sistema.clienteServidor.modoMonitor.Nucleo;
 import sistemaDistribuido.visual.clienteServidor.MicroNucleoFrame;
 import sistemaDistribuido.visual.rpc.PanelClienteServidorConector;
+
 import sistemaDistribuido.visual.rpc.RomeroCarlos.ClienteFrame;
 import sistemaDistribuido.visual.rpc.RomeroCarlos.ServidorFrame;
+
+//import sistemaDistribuido.visual.rpc.CachoRenato.ClienteFrame;
+//import sistemaDistribuido.visual.rpc.CachoRenato.ServidorFrame;
 
 import java.awt.Panel;
 import java.awt.event.ActionListener;

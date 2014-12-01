@@ -35,7 +35,17 @@ public class Constantes {
 	public static final int FACTORIAL = 2;
 	public static final int PRIME = 3;
 
+	public static final short CODOP_SUMA = 1;
+	public static final short CODOP_ORDENA = 2;
+	public static final short CODOP_POTENCIA = 3;
+	public static final short CODOP_RAIZ = 4;
+
+	public static final int POSICION_INICIO_DATOS = 12;
+	public static final int POSICION_INICIO_RESPUESTA = 13;
 	
+	public static final int INTERFAZ_NO_ENCONTRADA = -2;
+	public static final int RESPUESTA_NO_DISPONIBLE = -2;
+
 	public static final int BYTES_SOURCE = 4;
 	public static final int BYTES_DEST = 4;
 	public static final int BYTES_OPCOD = 2;
