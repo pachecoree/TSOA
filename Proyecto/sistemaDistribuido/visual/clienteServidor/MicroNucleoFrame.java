@@ -5,9 +5,13 @@ import sistemaDistribuido.sistema.clienteServidor.modoMonitor.ParMaquinaProceso;
 import sistemaDistribuido.util.Escribano;
 import sistemaDistribuido.util.Pausador;
 import sistemaDistribuido.visual.clienteServidor.ProcesoFrame;
+
 import sistemaDistribuido.visual.clienteServidor.RomeroCarlos.ClienteFrame;
-import sistemaDistribuido.visual.clienteServidor.RomeroCarlos.PanelClienteServidor;
 import sistemaDistribuido.visual.clienteServidor.RomeroCarlos.ServidorFrame;
+
+//import sistemaDistribuido.visual.clienteServidor.CachoRenato.ClienteFrame;
+//import sistemaDistribuido.visual.clienteServidor.CachoRenato.ServidorFrame;
+
 import sistemaDistribuido.visual.util.PanelInformador;
 import sistemaDistribuido.visual.util.PanelIPID;
 import microKernelBasedSystem.util.WriterManager;
@@ -30,7 +34,7 @@ public class MicroNucleoFrame extends Frame implements WindowListener,Escribano,
 	private WriterManager writerMan=new WriterManager(this);
 
 	public MicroNucleoFrame(){
-		super("Practicas 1 y 2 - Modelo Cliente/Servidor");
+		super("Practicas 1 y 2 - Modelo Cliente/Servidor :|");
 		setLayout(new BorderLayout());
 		informador=new PanelInformador();
 		destinatario=new PanelIPID();
