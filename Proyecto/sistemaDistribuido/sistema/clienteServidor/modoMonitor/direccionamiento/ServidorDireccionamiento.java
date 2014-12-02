@@ -1,4 +1,11 @@
 package sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento;
+/**
+ * Romero Pacheco Carlos Mauricio
+ * Cacho Robledo Vega Renato
+ * Proyecto
+ * 
+ * 
+ */
 
 public class ServidorDireccionamiento {
 	String ip;

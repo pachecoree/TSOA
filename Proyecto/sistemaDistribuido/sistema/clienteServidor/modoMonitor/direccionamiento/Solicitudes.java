@@ -1,7 +1,13 @@
-//Brambila López Jaime Arturo
-//Práctica #5: Transmisión Rala
-
 package sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento;
+/**
+ *   
+ * Romero Pacheco Carlos Mauricio
+ * Cacho Robledo Vega Renato
+ * Proyecto
+ * 
+ * Brambila López Jaime Arturo
+ * práctica #5: Transmisión Rala
+ */
 
 public class Solicitudes {
 

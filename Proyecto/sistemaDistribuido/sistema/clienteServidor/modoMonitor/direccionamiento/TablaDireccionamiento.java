@@ -1,10 +1,9 @@
+package sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento;
 /**
  * Romero Pacheco Carlos Mauricio
+ * Cacho Robledo Vega Renato
  * Proyecto
  */
-
-package sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 
