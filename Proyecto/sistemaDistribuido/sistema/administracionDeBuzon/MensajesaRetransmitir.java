@@ -2,7 +2,7 @@ package sistemaDistribuido.sistema.administracionDeBuzon;
 /*
  * Cacho Robledo Vega Renato
  * Práctica 5 -Almacenamiento de mensajes en buzones 28-11-14
- * 
+ * proyecto
  * 
  */
 public class MensajesaRetransmitir {

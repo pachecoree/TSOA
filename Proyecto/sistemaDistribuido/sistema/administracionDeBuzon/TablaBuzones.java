@@ -1,8 +1,10 @@
 package sistemaDistribuido.sistema.administracionDeBuzon;
+
 import java.util.Hashtable;
 /*
  * Cacho Robledo Vega Renato
- * Práctica 5 -Almacenamiento de mensajes en buzones
+ * Práctica 5 -Almacenamiento de mensajes en buzones 28-11-14
+ * proyecto
  * 
  */
 

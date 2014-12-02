@@ -1,5 +1,6 @@
 /**
  * Romero Pacheco Carlos Mauricio
+ * Cacho Robledo Vega Renato
  * Proyecto
  */
 package sistemaDistribuido.util;

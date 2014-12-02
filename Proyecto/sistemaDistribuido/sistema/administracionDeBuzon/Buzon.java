@@ -1,8 +1,10 @@
 package sistemaDistribuido.sistema.administracionDeBuzon;
-/*Cacho Robledo Vega Renato 
+/*
+ * Cacho Robledo Vega Renato
  * Práctica 5 -Almacenamiento de mensajes en buzones 28-11-14
+ * proyecto
  * 
- * */
+ */
 import java.util.LinkedList;
 
 public class Buzon{

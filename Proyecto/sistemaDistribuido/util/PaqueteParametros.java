@@ -1,5 +1,12 @@
 package sistemaDistribuido.util;
 
+/**
+ * Romero Pacheco Carlos Mauricio
+ * Cacho Robledo Vega Renato
+ * Proyecto
+ */
+
+
 public class PaqueteParametros {
 	private String parametro1;
 	private String parametro2;
