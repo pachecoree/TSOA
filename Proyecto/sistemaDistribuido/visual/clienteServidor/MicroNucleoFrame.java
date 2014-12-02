@@ -1,16 +1,17 @@
+/**
+ * Romero Pacheco Carlos Mauricio
+ * Proyecto
+ */
+
 package sistemaDistribuido.visual.clienteServidor;
 
+
+import static sistemaDistribuido.util.Constantes.*;
 import sistemaDistribuido.sistema.clienteServidor.modoMonitor.Nucleo;
 import sistemaDistribuido.sistema.clienteServidor.modoMonitor.ParMaquinaProceso;
 import sistemaDistribuido.util.Escribano;
 import sistemaDistribuido.util.Pausador;
 import sistemaDistribuido.visual.clienteServidor.ProcesoFrame;
-
-import sistemaDistribuido.visual.clienteServidor.RomeroCarlos.ClienteFrame;
-import sistemaDistribuido.visual.clienteServidor.RomeroCarlos.ServidorFrame;
-
-//import sistemaDistribuido.visual.clienteServidor.CachoRenato.ClienteFrame;
-//import sistemaDistribuido.visual.clienteServidor.CachoRenato.ServidorFrame;
 
 import sistemaDistribuido.visual.util.PanelInformador;
 import sistemaDistribuido.visual.util.PanelIPID;
@@ -99,12 +100,38 @@ public class MicroNucleoFrame extends Frame implements WindowListener,Escribano,
 
 		public void actionPerformed(ActionEvent e){
 			String com=e.getActionCommand();
-
+			int selectedChoice = panelBotones.getSelectedChoice();
 			if (com.equals("Cliente")){
-				levantarProcesoFrame(new ClienteFrame(MicroNucleoFrame.this));
+				if (selectedChoice == CACHO) {
+					levantarProcesoFrame(new 
+						   sistemaDistribuido.visual.clienteServidor.CachoRenato.ClienteFrame(MicroNucleoFrame.this));
+				}
+				else if (selectedChoice == ROMERO){
+					levantarProcesoFrame(new 
+						   sistemaDistribuido.visual.clienteServidor.RomeroCarlos.ClienteFrame(MicroNucleoFrame.this));
+				}
+				else if (selectedChoice == BRAMBILA) {
+					
+				}
+				else if (selectedChoice == VELASCO) {
+					
+				}
 			}
 			else if (com.equals("Servidor")){
-				levantarProcesoFrame(new ServidorFrame(MicroNucleoFrame.this));
+				if (selectedChoice == CACHO) {
+					levantarProcesoFrame(new
+						   sistemaDistribuido.visual.clienteServidor.CachoRenato.ServidorFrame (MicroNucleoFrame.this));
+				}
+				else if (selectedChoice == ROMERO) {
+					levantarProcesoFrame(new 
+						   sistemaDistribuido.visual.clienteServidor.RomeroCarlos.ServidorFrame(MicroNucleoFrame.this));
+				}
+				else if (selectedChoice == BRAMBILA) {
+					
+				}
+				else if (selectedChoice == VELASCO) {
+					
+				}
 			}
 		}
 	}

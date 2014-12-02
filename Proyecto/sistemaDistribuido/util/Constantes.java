@@ -1,11 +1,16 @@
 /**
  * Romero Pacheco Carlos Mauricio
- * Práctica 5
+ * Proyecto
  */
 package sistemaDistribuido.util;
 
 public class Constantes {
 
+	public static final int BRAMBILA = 0;
+	public static final int CACHO = 1;
+	public static final int ROMERO = 2;
+	public static final int VELASCO = 3;
+	
 	public static final int C_0 = 0;
 	public static final int C_1 = 1;
 	public static final int TEN_SECONDS = 10000;

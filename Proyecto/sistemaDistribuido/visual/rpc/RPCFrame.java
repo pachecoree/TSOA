@@ -1,6 +1,6 @@
-/*
+/**
  * Romero Pacheco Carlos Mauricio
- * Práctica 3
+ * Proyecto
  */
 
 package sistemaDistribuido.visual.rpc;
@@ -9,11 +9,7 @@ import sistemaDistribuido.sistema.clienteServidor.modoMonitor.Nucleo;
 import sistemaDistribuido.visual.clienteServidor.MicroNucleoFrame;
 import sistemaDistribuido.visual.rpc.PanelClienteServidorConector;
 
-import sistemaDistribuido.visual.rpc.RomeroCarlos.ClienteFrame;
-import sistemaDistribuido.visual.rpc.RomeroCarlos.ServidorFrame;
-
-//import sistemaDistribuido.visual.rpc.CachoRenato.ClienteFrame;
-//import sistemaDistribuido.visual.rpc.CachoRenato.ServidorFrame;
+import static sistemaDistribuido.util.Constantes.*;
 
 import java.awt.Panel;
 import java.awt.event.ActionListener;
@@ -40,10 +36,38 @@ public class RPCFrame extends MicroNucleoFrame{
 		public void actionPerformed(ActionEvent e){
 			String com=e.getActionCommand();
 			if (com.equals("Cliente")){
-				levantarProcesoFrame(new ClienteFrame(RPCFrame.this));
+				int selectedChoice = panelBotones.getSelectedChoice();
+				if (selectedChoice == CACHO) {
+					levantarProcesoFrame(new 
+						   sistemaDistribuido.visual.rpc.CachoRenato.ClienteFrame(RPCFrame.this));
+				}
+				else if (selectedChoice == ROMERO){
+					levantarProcesoFrame(new 
+						   sistemaDistribuido.visual.rpc.RomeroCarlos.ClienteFrame(RPCFrame.this));
+				}
+				else if (selectedChoice == BRAMBILA) {
+					
+				}
+				else if (selectedChoice == VELASCO) {
+					
+				}
 			}
 			else if (com.equals("Servidor")){
-				levantarProcesoFrame(new ServidorFrame(RPCFrame.this));
+				int selectedChoice = panelBotones.getSelectedChoice();
+				if (selectedChoice == CACHO) {
+					levantarProcesoFrame(new
+						   sistemaDistribuido.visual.rpc.CachoRenato.ServidorFrame (RPCFrame.this));
+				}
+				else if (selectedChoice == ROMERO) {
+					levantarProcesoFrame(new 
+						   sistemaDistribuido.visual.rpc.RomeroCarlos.ServidorFrame(RPCFrame.this));
+				}
+				else if (selectedChoice == BRAMBILA) {
+					
+				}
+				else if (selectedChoice == VELASCO) {
+					
+				}
 			}
 			else if (com.equals("Conector")){
 				conector.setVisible(true);
