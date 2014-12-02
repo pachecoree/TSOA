@@ -63,7 +63,16 @@ public final class MicroNucleo extends MicroNucleoBase {
 
 		tablaBuzones.deregistrar(idProceso);
 	}
-
+	public void registrarServidor(int numeroDeServicio, int idProceso ){
+		
+		
+	}
+	
+	public void deregistrarServidor(int numeroDeServicio){
+		
+		
+	}
+	
 
 	/*---Metodos para probar el paso de mensajes entre los procesos cliente y servidor en ausencia de datagramas.
     Esta es una forma incorrecta de programacion "por uso de variables globales" (en este caso atributos de clase)
