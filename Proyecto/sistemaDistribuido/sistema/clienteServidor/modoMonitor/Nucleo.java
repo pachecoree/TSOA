@@ -1,7 +1,9 @@
-/*
+/**
+ * Cacho Robledo Vega Renato
  * Romero Pacheco Carlos Mauricio
- * Práctica 4
- */
+ * 
+ * Proyecto
+ **/
 
 package sistemaDistribuido.sistema.clienteServidor.modoMonitor;
 

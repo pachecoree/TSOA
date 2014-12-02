@@ -1,7 +1,9 @@
 /**
+ * Cacho Robledo Vega Renato
  * Romero Pacheco Carlos Mauricio
+ * 
  * Proyecto
- */
+ **/
 
 package sistemaDistribuido.visual.rpc;
 
