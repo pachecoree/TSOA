@@ -32,4 +32,12 @@ public class MensajesRespuesta {
 		OrdenamientoBytes.breakNumber(PRO_AU, Package, BYTES_PRO,POS_PRO);
 		return Package;
 	}
+	
+	public static byte[] elaborateResponseFSA(int source,int servId) {
+		byte[] Package = new byte[BYTES_SOURCE+BYTES_SERVER+BYTES_PRO];
+		OrdenamientoBytes.breakNumber(source, Package, BYTES_SOURCE, POS_SOURCE);
+		OrdenamientoBytes.breakNumber(servId, Package, BYTES_SERVER, POS_SERVER);
+		OrdenamientoBytes.breakNumber(PRO_FSA, Package, BYTES_PRO,POS_PRO);
+		return Package;
+	}
 }

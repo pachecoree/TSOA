@@ -23,8 +23,8 @@ public class TablaDireccionamiento {
 		}
 		else {
 			list = new LinkedList<ServidorDireccionamiento>();
-			list.add(servidor);
 		}
+		list.add(servidor);
 		map.put(dest, list);
 	}
 	

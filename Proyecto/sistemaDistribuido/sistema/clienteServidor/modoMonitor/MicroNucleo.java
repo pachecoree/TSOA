@@ -11,9 +11,11 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import sistemaDistribuido.sistema.clienteServidor.modoMonitor.MicroNucleoBase;
+import sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento.ServidorLocal;
 import sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento.Solicitudes;
 import sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento.ServidorDireccionamiento;
 import sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento.TablaDireccionamiento;
+import sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento.TablaServidoresLocales;
 import sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento.TablaSolicitudes;
 import static sistemaDistribuido.util.Constantes.*;
 import sistemaDistribuido.sistema.clienteServidor.modoUsuario.Proceso;
@@ -30,6 +32,7 @@ public final class MicroNucleo extends MicroNucleoBase {
 	private TablaDireccionamiento mapDirectory;
 	private TablaBuzones tablaBuzones;
 	private TablaSolicitudes mapSol;
+	private TablaServidoresLocales mapLocalServer;
 	/**
 	 * 
 	 */
@@ -40,6 +43,7 @@ public final class MicroNucleo extends MicroNucleoBase {
 		mapDirectory = new TablaDireccionamiento();
 		tablaBuzones = new TablaBuzones();
 		mapSol = new TablaSolicitudes();
+		mapLocalServer = new TablaServidoresLocales();
 	}
 
 	/**
@@ -63,16 +67,7 @@ public final class MicroNucleo extends MicroNucleoBase {
 
 		tablaBuzones.deregistrar(idProceso);
 	}
-	public void registrarServidor(int numeroDeServicio, int idProceso ){
-		
-		
-	}
-	
-	public void deregistrarServidor(int numeroDeServicio){
-		
-		
-	}
-	
+
 
 	/*---Metodos para probar el paso de mensajes entre los procesos cliente y servidor en ausencia de datagramas.
     Esta es una forma incorrecta de programacion "por uso de variables globales" (en este caso atributos de clase)
@@ -246,11 +241,29 @@ public final class MicroNucleo extends MicroNucleoBase {
 				else if (OrdenamientoBytes.buildNumber(BYTES_PRO, buffer, POS_PRO) == PRO_LSA) {
 					imprimeln("Recibido mensaje de busqueda de servidor");
 					imprimeln("Revisando si tengo el servidor");
-					//procesar LSA para ver si se encuentra el servidor
+					int serviceId  = OrdenamientoBytes.buildNumber(BYTES_SERVER, buffer, POS_SERVER);
+					if (mapLocalServer.hasElement(serviceId)) {
+						imprimeln("Se encontro un servidor para ese servicio");
+						ServidorLocal localServ = mapLocalServer.getElement(serviceId);
+						int serverId = localServ.getId();
+						imprimeln("Elaborando mensaje respuesta (FSA)");
+						Datagramas.send(MensajesRespuesta.elaborateResponseFSA(source,serverId),
+								dameSocketEmision(),dp.getAddress(), damePuertoRecepcion());
+						imprimeln("Enviado mensaje con el ID el servidor ");
+					}
+					else {
+						imprimeln("No se encontro el servidor para realizar ese servicio");
+					}
 					
 				}
 				else if (OrdenamientoBytes.buildNumber(BYTES_PRO, buffer, POS_PRO) == PRO_FSA) {
-					//procesar mensae FSA
+					//procesar mensaje FSA
+					int serverId = OrdenamientoBytes.buildNumber(BYTES_SERVER, buffer, POS_SERVER);
+					String ip = dp.getAddress().getHostAddress();
+					imprimeln("Recibido mensaje de localizacion (FSA)");
+					imprimeln("Servidor con el Id : " + serverId + " en la direccion : " + ip);
+					Solicitudes sol = mapSol.getElement(source);
+					mapDirectory.addElement(sol.dameServicio(), new ServidorDireccionamiento(ip,serverId));
 				}
 				else {
 					int dest = OrdenamientoBytes.buildNumber(BYTES_DEST,buffer,POS_DEST);
@@ -334,6 +347,14 @@ public final class MicroNucleo extends MicroNucleoBase {
 		}catch (InterruptedException e) {
 			System.out.println("Error al ejecutar el Sleep :" + e.getMessage());
 		}
+	}
+	
+	public void registrarServidor(int numeroDeServicio, int idProceso ){
+		mapLocalServer.addElement(numeroDeServicio,new ServidorLocal(idProceso));
+	}
+	
+	public void deregistrarServidor(int numeroDeServicio,int idProceso){
+		mapLocalServer.deleteElement(numeroDeServicio, idProceso);
 	}
 
 }
