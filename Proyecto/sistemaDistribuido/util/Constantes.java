@@ -75,4 +75,43 @@ public class Constantes {
 	public static final int BYTES_SERVER = 4;
 	public static final int MAX_INTENTOS_LSA = 3;
 	public static final int LSAAU_PACKAGE_SIZE = 12;
+	
+	
+	public static final int POSICION_ID_EMISOR = 0;
+	public static final int BYTES_ID_EMISOR = 4;
+	public static final int POSICION_ID_RECEPTOR = 4;
+	public static final int BYTES_ID_RECEPTOR = 4;
+	public static final int POSICION_CODIGO_OPERACION = 8;
+	public static final int BYTES_CODIGO_OPERACION = 2;
+	public static final int POSICION_MENSAJE = 10;
+	public static final int POSICION_RESPUESTA = 8;
+	public static final int TAMANO_MENSAJE = 1024;
+	public static final int BYTES_MENSAJE = 1014;
+	public static final int BYTES_RESPUESTA = 1024;
+	public static final int CREAR = 0;
+	public static final int ELIMINAR = 1;
+	public static final int LEER = 2;
+	public static final int ESCRIBIR = 3;
+	public static final int POSIBLES_RESPUESTAS = 10;
+	public static final String SEPARADOR = "-";
+	public static final int PARAMETROS_LEER = 3;
+	public static final int POSICION_PRIMER_PARAMETRO = 0;
+	public static final int POSICION_SEGUNDO_PARAMETRO = 1;
+	public static final int POSICION_TERCER_PARAMETRO = 2;
+	public static final int PARAMETROS_ESCRIBIR = 3;
+	public static final int PAUSA_MILISEGUNDOS = 1000;
+	public static final int PRIMER_PARAMETRO = 1;
+	public static final int SEGUNDO_PARAMETRO = 2;
+	public static final int TERCER_PARAMETRO = 3;
+	public static final int CUARTO_PARAMETRO = 4;
+	public static final int QUINTO_PARAMETRO = 5;
+	public static final int ELEMENTOS_PROMEDIO = 5;
+	public static final int PORCIENTO = 100;
+	public static final int TAMANO_TEXTFIELD = 2;
+	public static final short SUMA = 0;
+	public static final short PROMEDIO = 1;
+	public static final short POTENCIA = 2;
+	public static final short PORCENTAJE = 3;
+	
+	
 }

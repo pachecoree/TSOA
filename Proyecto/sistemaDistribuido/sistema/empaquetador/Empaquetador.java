@@ -3,6 +3,9 @@ package sistemaDistribuido.sistema.empaquetador;
  *Cacho Robledo Vega Renato 
  * práctica 3 -Llamadas a Procedimientos Remotos (RPC) “Resguardos del Cliente y del Servidor” -09-NOV-14
  */
+import static sistemaDistribuido.util.Constantes.*;
+
+
 public class Empaquetador {
 	
 	public static int desempaquetarInt(byte[] contenedor, int offset){
@@ -89,6 +92,49 @@ public class Empaquetador {
 		return Double.parseDouble(stringNumeroDouble);
 	}
 	
+	
+	public static void empaqueta(byte[] arreglo,int posicion,short valor){
+		ordena(arreglo,posicion,BYTES_SHORT,valor);
+	}
+	
+	public static void empaqueta(byte[] arreglo,int posicion,int valor){
+		ordena(arreglo,posicion,BYTES_INT,valor);
+	}
+	
+	public static void empaqueta(byte[] arreglo,int posicion,long valor){
+		ordena(arreglo,posicion,BYTES_LONG,valor);
+	}
+	
+	public static void ordena(byte[] arreglo,int posicionInicio,int bytes,long valor){
+		int posicionFinal = posicionInicio + bytes;
+		int corrimiento = bytes;
+		for(int i=posicionInicio;i<posicionFinal;i++){
+			corrimiento--;
+			arreglo[i]= (byte)((valor >> BITS_BYTE * corrimiento) & 0xff);
+		}
+	}
+	
+	public static int arregloAInt(byte[] arreglo) 
+	{
+	    int valor = 0;
+	    int corrimiento = BYTES_INT;
+	    for (int i=0;i<BYTES_INT;i++) {
+	    	corrimiento--;
+	        valor += (arreglo[i] & 0x000000FF) << corrimiento * BITS_BYTE;
+	    }
+	    return valor;
+	}
+	
+	public static short arregloAShort(byte[] arreglo) 
+	{
+	    short valor = 0;
+	    int corrimiento = BYTES_SHORT;
+	    for (int i=0;i<BYTES_SHORT;i++) {
+	    	corrimiento--;
+	        valor += (arreglo[i] & 0x00FF) << corrimiento * BITS_BYTE;
+	    }
+	    return valor;
+	}
 	
 	
 	
