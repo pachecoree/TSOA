@@ -67,4 +67,12 @@ public class Constantes {
 	public static final int POS_PRO = 4;
 	
 	public static final int ASA_NOT_FOUND = -99;
+	public static final String BROADCAST_IP = "255.255.255.255";
+	public static final String LOCALHOST = "127.0.0.1";
+	public static final int PRO_LSA = -3;
+	public static final int PRO_FSA = -4;
+	public static final int POS_SERVER = 8;
+	public static final int BYTES_SERVER = 4;
+	public static final int MAX_INTENTOS_LSA = 3;
+	public static final int LSAAU_PACKAGE_SIZE = 12;
 }
