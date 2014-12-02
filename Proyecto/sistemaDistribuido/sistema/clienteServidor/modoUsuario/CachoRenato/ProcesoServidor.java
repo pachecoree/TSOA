@@ -110,6 +110,8 @@ public class ProcesoServidor extends Proceso{
 		imprimeln("Registrando buzón");
 		Nucleo.nucleo.registrarBuzon(dameID());
 		
+		Nucleo.nucleo.registrarServidor(CACHO_FILE_SERVER, dameID());
+		
 		while(continuar()){
 			imprimeln("Invocando a receive()");
 			Nucleo.receive(dameID(),solicitud);
@@ -145,6 +147,8 @@ public class ProcesoServidor extends Proceso{
 		}
 		System.out.println("Deregistrando buzón de proceso: "+dameID());
 		Nucleo.nucleo.deregistrarBuzon(dameID());
+		
+		Nucleo.nucleo.deregistrarServidor(CACHO_FILE_SERVER, dameID());
 		
 	}
 }

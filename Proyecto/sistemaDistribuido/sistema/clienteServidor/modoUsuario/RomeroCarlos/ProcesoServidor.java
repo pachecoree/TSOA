@@ -148,6 +148,9 @@ public class ProcesoServidor extends Proceso{
 		imprimeln("Inicio de proceso");
 		byte[] solServer=new byte[BUFFER_SIZE];
 		byte[] respServer;
+		
+		Nucleo.nucleo.registrarServidor(ROMERO_FILE_SERVER, dameID());
+
 		while(continuar()){
 			imprimeln("Invocando a receive()");
 			Nucleo.receive(dameID(),solServer);
@@ -157,6 +160,9 @@ public class ProcesoServidor extends Proceso{
 			Pausador.pausa(1000);  //sin esta línea es posible que Servidor solicite send antes que Cliente solicite receive
 			Nucleo.send(dest,respServer);
 		}
+		
+		Nucleo.nucleo.deregistrarServidor(ROMERO_FILE_SERVER, dameID());
+		
 	}
 	
 }

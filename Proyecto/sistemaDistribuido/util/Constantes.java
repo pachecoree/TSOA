@@ -28,6 +28,12 @@ public class Constantes {
 	public static final int BYTES_BOOLEAN = 1;
 	
 	public static final int FILE_SERVER = 248;
+	
+	public static final int ROMERO_FILE_SERVER = 249;
+	public static final int BRAMBILA_FILE_SERVER = 250;
+	public static final int CACHO_FILE_SERVER = 251;
+	
+	
 	public static final int CREATE = 0;
 	public static final int DELETE = 1;
 	public static final int READ = 2;
