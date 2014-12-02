@@ -64,7 +64,7 @@ public class ProcesoCliente extends Proceso{
 	private void envia_solicitud_y_recibe_respuesta(byte[] solicitud, byte[] respuesta, String msjResp){
 		
 		imprimeln("Señalamiento al núcleo para envío de mensaje");
-		Nucleo.send(1000,solicitud);
+		Nucleo.send(CACHO_FILE_SERVER,solicitud);
 		
 		imprimeln("Invocando metodo receive");
 		Nucleo.receive(dameID(),respuesta);

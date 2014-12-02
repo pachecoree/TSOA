@@ -47,7 +47,7 @@ public class ProcesoCliente extends Proceso{
 		System.arraycopy(mensajeBytes,C_0,solicitudCliente,BYTES_ID_EMISOR+BYTES_ID_RECEPTOR+BYTES_CODIGO_OPERACION,tamanoMensaje);
 		imprimeln("Solicitud Enviada");
 		
-		Nucleo.send(FILE_SERVER,solicitudCliente);
+		Nucleo.send(BRAMBILA_FILE_SERVER,solicitudCliente);
 		
 		Nucleo.receive(dameID(),respuestaCliente);
 		

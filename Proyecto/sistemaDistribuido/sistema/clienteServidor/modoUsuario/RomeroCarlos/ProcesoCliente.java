@@ -238,7 +238,7 @@ public class ProcesoCliente extends Proceso{
 		byte[] respClient=new byte[BUFFER_SIZE];
 		doApplication();
 		imprimeln("Señalamiento al núcleo para envío de mensaje");
-		Nucleo.send(FILE_SERVER,solClient);
+		Nucleo.send(ROMERO_FILE_SERVER,solClient);
 		imprimeln("Invocando a receive()");
 		Nucleo.receive(dameID(),respClient);
 		processResponse(respClient);

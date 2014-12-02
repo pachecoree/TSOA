@@ -149,7 +149,7 @@ public class ProcesoServidor extends Proceso{
 		byte[] solServer=new byte[BUFFER_SIZE];
 		byte[] respServer;
 		
-		Nucleo.nucleo.registrarServidor(ROMERO_FILE_SERVER, dameID());
+		Nucleo.registrarServidor(ROMERO_FILE_SERVER, dameID());
 
 		while(continuar()){
 			imprimeln("Invocando a receive()");
@@ -161,7 +161,7 @@ public class ProcesoServidor extends Proceso{
 			Nucleo.send(dest,respServer);
 		}
 		
-		Nucleo.nucleo.deregistrarServidor(ROMERO_FILE_SERVER, dameID());
+		Nucleo.deregistrarServidor(ROMERO_FILE_SERVER, dameID());
 		
 	}
 	

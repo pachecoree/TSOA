@@ -28,6 +28,14 @@ public class Nucleo{
 	public static void registerInterface(ParIpId asa) {
 		nucleo.registerInterface(asa);
 	}
+	
+	public static void registrarServidor(int numeroDeServicio,int idProceso) {
+		nucleo.registrarServidor(numeroDeServicio, idProceso);
+	}
+	
+	public static void deregistrarServidor(int numeroDeServicio,int idProceso) {
+		nucleo.deregistrarServidor(numeroDeServicio, idProceso);
+	}
 
 	public static void receiveNB(int addr, byte[] message) {
 		nucleo.receiveNB(addr, message);

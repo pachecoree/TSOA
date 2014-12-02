@@ -240,8 +240,8 @@ public final class MicroNucleo extends MicroNucleoBase {
 				}
 				else if (OrdenamientoBytes.buildNumber(BYTES_PRO, buffer, POS_PRO) == PRO_LSA) {
 					imprimeln("Recibido mensaje de busqueda de servidor");
-					imprimeln("Revisando si tengo el servidor");
 					int serviceId  = OrdenamientoBytes.buildNumber(BYTES_SERVER, buffer, POS_SERVER);
+					imprimeln("Revisando si tengo el servidor con el servicio : " + serviceId);
 					if (mapLocalServer.hasElement(serviceId)) {
 						imprimeln("Se encontro un servidor para ese servicio");
 						ServidorLocal localServ = mapLocalServer.getElement(serviceId);
@@ -351,10 +351,12 @@ public final class MicroNucleo extends MicroNucleoBase {
 	
 	public void registrarServidor(int numeroDeServicio, int idProceso ){
 		mapLocalServer.addElement(numeroDeServicio,new ServidorLocal(idProceso));
+		return;
 	}
 	
 	public void deregistrarServidor(int numeroDeServicio,int idProceso){
 		mapLocalServer.deleteElement(numeroDeServicio, idProceso);
+		return;
 	}
 
 }

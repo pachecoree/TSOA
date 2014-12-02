@@ -1,7 +1,9 @@
 package sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Set;
 
 public class TablaServidoresLocales {
 
@@ -36,6 +38,7 @@ public class TablaServidoresLocales {
 			}
 		}
 	}
+
 	
 	public ServidorLocal getElement(int serviceId) {
 		LinkedList<ServidorLocal> list = map.get(serviceId);

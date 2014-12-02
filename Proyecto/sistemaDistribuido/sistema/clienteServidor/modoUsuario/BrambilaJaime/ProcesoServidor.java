@@ -37,7 +37,7 @@ public class ProcesoServidor extends Proceso{
 		
 		imprimeln("Proceso servidor en ejecucion.");
 		
-		Nucleo.nucleo.registrarServidor(BRAMBILA_FILE_SERVER, dameID());
+		Nucleo.registrarServidor(BRAMBILA_FILE_SERVER, dameID());
 		
 		while(continuar()){
 			Nucleo.receive(dameID(),solicitudServidor);
@@ -117,7 +117,7 @@ public class ProcesoServidor extends Proceso{
 			imprimeln("\nRespuesta Enviada");
 		}
 		
-		Nucleo.nucleo.deregistrarServidor(BRAMBILA_FILE_SERVER, dameID());
+		Nucleo.deregistrarServidor(BRAMBILA_FILE_SERVER, dameID());
 	}
 	
 	public int exito(int tipoRespuesta){
