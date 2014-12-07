@@ -92,4 +92,8 @@ public class Nucleo{
 	public static void iniciarSistema(Escribano wri, int puertoEntrada, int outputPort) {
 		nucleo.iniciarSistema(wri, puertoEntrada);
 	}
+	
+	public static void retrySend(int dest,byte[] message,int idProceso) {
+		nucleo.retrySend(dest, message,idProceso);
+	}
 }

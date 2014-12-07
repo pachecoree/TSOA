@@ -19,10 +19,8 @@ public class PanelClienteServidor extends Panel{
      botonCliente=new Button("Cliente");
      botonServidor=new Button("Servidor");
      choiceIndividual = new Choice();
-     choiceIndividual.add("Brambila");
      choiceIndividual.add("Cacho");
      choiceIndividual.add("Romero");
-     choiceIndividual.add("Velasco");
      add(choiceIndividual);
      add(botonCliente);
      add(botonServidor);

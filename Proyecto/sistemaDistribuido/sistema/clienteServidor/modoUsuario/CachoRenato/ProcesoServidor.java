@@ -107,10 +107,11 @@ public class ProcesoServidor extends Proceso{
 		String msj;
 		String msjRespuesta = "";
 		
+		Nucleo.registrarServidor(CACHO_FILE_SERVER, dameID());
 		imprimeln("Registrando buzón");
 		Nucleo.nucleo.registrarBuzon(dameID());
 		
-		Nucleo.registrarServidor(CACHO_FILE_SERVER, dameID());
+		
 		
 		while(continuar()){
 			imprimeln("Invocando a receive()");
@@ -119,8 +120,7 @@ public class ProcesoServidor extends Proceso{
 			codop = extraeCodop(solicitud);
 			tam = extraeTam(solicitud);
 			origen = extraeOrigen(solicitud);
-			
-			if(tam>0){
+			if(tam>0 && tam <1024){
 				msjByteArray = new byte[tam];
 				System.arraycopy(solicitud, OFFSET_MENSAJE_CLIENTE, msjByteArray, 0, tam);
 				msj = new String(msjByteArray,0,msjByteArray.length);
@@ -132,7 +132,6 @@ public class ProcesoServidor extends Proceso{
 			imprimeln("Procesando peticion recibida del cliente");
 			msjRespuesta = procesaRespuesta(codop, msj, msjByteArray);
 
-			Pausador.pausa(1000);  //sin esta línea es posible que Servidor solicite send antes que Cliente solicite receive
 			imprimeln("Generando mensaje a ser enviado, llenando los campos necesarios");
 				
 			insertaOrigen(solicitud);
@@ -140,12 +139,14 @@ public class ProcesoServidor extends Proceso{
 			insertaTam(solicitud, (short)msjRespuesta.getBytes().length);
 			System.arraycopy(msjRespuesta.getBytes(), 0, solicitud, 10, msjRespuesta.getBytes().length);
 			
+			Pausador.pausa(FIVE_SECONDS);  //sin esta línea es posible que Servidor solicite send antes que Cliente solicite receive
+			
 			imprimeln("Señalamiento al nucleo para envío de mensaje");
 			imprimeln("Enviando respuesta...");
 			Nucleo.send(origen,solicitud);
 
 		}
-		System.out.println("Deregistrando buzón de proceso: "+dameID());
+		imprimeln("Deregistrando buzón de proceso: "+dameID());
 		Nucleo.nucleo.deregistrarBuzon(dameID());
 		
 		Nucleo.deregistrarServidor(CACHO_FILE_SERVER, dameID());

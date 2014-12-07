@@ -150,20 +150,15 @@ public class ProcesoServidor extends Proceso{
 		byte[] respServer;
 		
 		Nucleo.registrarServidor(ROMERO_FILE_SERVER, dameID());
-		imprimeln("Registrando buzón");
-		Nucleo.nucleo.registrarBuzon(dameID());
 		while(continuar()){
 			imprimeln("Invocando a receive()");
 			Nucleo.receive(dameID(),solServer);
 			respServer = processApplication(solServer);
 			imprimeln("Señalamiento al núcleo para envío de mensaje");
 			int dest = OrdenamientoBytes.buildNumber(BYTES_SOURCE, solServer,POS_SOURCE);
-			Pausador.pausa(1000);  //sin esta línea es posible que Servidor solicite send antes que Cliente solicite receive
+			Pausador.pausa(TEN_SECONDS);  //sin esta línea es posible que Servidor solicite send antes que Cliente solicite receive
 			Nucleo.send(dest,respServer);
 		}
-		
-		imprimeln("deregistrando buzón");
-		Nucleo.nucleo.deregistrarBuzon(dameID());
 		
 		Nucleo.deregistrarServidor(ROMERO_FILE_SERVER, dameID());
 		

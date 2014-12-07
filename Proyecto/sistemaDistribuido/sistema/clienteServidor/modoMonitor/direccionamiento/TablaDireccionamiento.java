@@ -6,6 +6,7 @@ package sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento;
  */
 import java.util.HashMap;
 import java.util.LinkedList;
+import static sistemaDistribuido.util.Constantes.*;
 
 public class TablaDireccionamiento {
 
@@ -34,7 +35,13 @@ public class TablaDireccionamiento {
 			for (int i=0;i<listSize;i++) {
 				ServidorDireccionamiento servidor = list.get(i);
 				if (servidor.getProcessId() == processId) {
-					list.remove(i);
+					if (listSize == C_1) {
+						map.remove(dest);
+					}
+					else {
+						list.remove(i);
+						map.put(dest, list);
+					}
 					break;
 				}
 			}

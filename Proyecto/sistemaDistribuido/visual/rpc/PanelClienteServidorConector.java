@@ -3,7 +3,7 @@ package sistemaDistribuido.visual.rpc;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 
-import sistemaDistribuido.visual.clienteServidor.RomeroCarlos.PanelClienteServidor;
+import sistemaDistribuido.visual.clienteServidor.PanelClienteServidor;
 
 public class PanelClienteServidorConector extends PanelClienteServidor{
   private static final long serialVersionUID=1;

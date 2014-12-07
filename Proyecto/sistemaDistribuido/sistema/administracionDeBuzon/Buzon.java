@@ -19,13 +19,13 @@ public class Buzon{
 	}
 	
 	
-	public byte[] obtenerMensaje() {
+	public synchronized byte[] obtenerMensaje() {
 		return mensajes.poll();
 	}
 
-	public boolean ingresarMensaje(byte[] mensaje) {
+	public synchronized boolean ingresarMensaje(byte[] mensaje) {
 		
-		if((short)mensajes.size() < MAX_MENSAJES){
+		if(mensajes.size() < MAX_MENSAJES){
 			
 			mensajes.offer(mensaje);
 			return INSERCION_EXITOSA;
@@ -35,7 +35,7 @@ public class Buzon{
 		
 	}
 	
-	public boolean estaVacio(){
+	public synchronized boolean estaVacio(){
 		
 		if(mensajes.isEmpty()){		
 			return true;
@@ -45,6 +45,17 @@ public class Buzon{
 			
 	}
 	
+	public int buzonTam() {
+		return mensajes.size();
+	}
+	
+	public byte[] dameUltimo() {
+		if (mensajes.size() == 0) {
+			byte[] m = {1,1,1,1,1};
+			return m;
+		}
+		return mensajes.getLast();
+	}
 	
 	
 }

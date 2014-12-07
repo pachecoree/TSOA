@@ -8,6 +8,7 @@ package sistemaDistribuido.sistema.clienteServidor.modoMonitor.direccionamiento;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import static sistemaDistribuido.util.Constantes.*;
 
 public class TablaServidoresLocales {
 
@@ -36,7 +37,13 @@ public class TablaServidoresLocales {
 			for (int i=0;i<listSize;i++) {
 				ServidorLocal servidor = list.get(i);
 				if (servidor.getId() == serverId) {
-					list.remove(i);
+					if (listSize == C_1) {
+						map.remove(serviceId);
+					}
+					else {
+						list.remove(i);
+						map.put(serviceId, list);
+					}
 					break;
 				}
 			}

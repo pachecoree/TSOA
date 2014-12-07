@@ -47,13 +47,6 @@ public class RPCFrame extends MicroNucleoFrame{
 					levantarProcesoFrame(new 
 						   sistemaDistribuido.visual.rpc.RomeroCarlos.ClienteFrame(RPCFrame.this));
 				}
-				else if (selectedChoice == BRAMBILA) {
-					levantarProcesoFrame(new 
-							   sistemaDistribuido.visual.rpc.BrambilaJaime.ClienteFrame(RPCFrame.this));
-				}
-				else if (selectedChoice == VELASCO) {
-					
-				}
 			}
 			else if (com.equals("Servidor")){
 				int selectedChoice = panelBotones.getSelectedChoice();
@@ -64,13 +57,6 @@ public class RPCFrame extends MicroNucleoFrame{
 				else if (selectedChoice == ROMERO) {
 					levantarProcesoFrame(new 
 						   sistemaDistribuido.visual.rpc.RomeroCarlos.ServidorFrame(RPCFrame.this));
-				}
-				else if (selectedChoice == BRAMBILA) {
-					levantarProcesoFrame(new 
-							   sistemaDistribuido.visual.rpc.BrambilaJaime.ServidorFrame(RPCFrame.this));
-				}
-				else if (selectedChoice == VELASCO) {
-					
 				}
 			}
 			else if (com.equals("Conector")){

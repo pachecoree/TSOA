@@ -15,17 +15,15 @@ public class AlmacenamientoTemporal {
 		map = new HashMap<Integer,byte[]>();
 	}
 	
-	public void addElement(int dest,byte[] message) {
+	public synchronized void addElement(int dest,byte[] message) {
 		map.put(dest, message);
 	}
 	
-	public void deleteElement(int dest) {
-		if (hasElement(dest)) {
-			map.remove(dest);
-		}
+	public synchronized void deleteElement(int dest) {
+		map.remove(dest);
 	}
 	
-	public byte[] getElement(int dest) {
+	public synchronized byte[] getElement(int dest) {
 		return map.get(dest);
 	}
 	

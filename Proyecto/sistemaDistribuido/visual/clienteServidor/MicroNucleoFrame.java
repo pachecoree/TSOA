@@ -112,13 +112,6 @@ public class MicroNucleoFrame extends Frame implements WindowListener,Escribano,
 					levantarProcesoFrame(new 
 						   sistemaDistribuido.visual.clienteServidor.RomeroCarlos.ClienteFrame(MicroNucleoFrame.this));
 				}
-				else if (selectedChoice == BRAMBILA) {
-					levantarProcesoFrame(new 
-							   sistemaDistribuido.visual.clienteServidor.BrambilaJaime.ClienteFrame(MicroNucleoFrame.this));
-				}
-				else if (selectedChoice == VELASCO) {
-					
-				}
 			}
 			else if (com.equals("Servidor")){
 				if (selectedChoice == CACHO) {
@@ -128,13 +121,6 @@ public class MicroNucleoFrame extends Frame implements WindowListener,Escribano,
 				else if (selectedChoice == ROMERO) {
 					levantarProcesoFrame(new 
 						   sistemaDistribuido.visual.clienteServidor.RomeroCarlos.ServidorFrame(MicroNucleoFrame.this));
-				}
-				else if (selectedChoice == BRAMBILA) {
-					levantarProcesoFrame(new 
-							   sistemaDistribuido.visual.clienteServidor.BrambilaJaime.ServidorFrame(MicroNucleoFrame.this));
-				}
-				else if (selectedChoice == VELASCO) {
-					
 				}
 			}
 		}
